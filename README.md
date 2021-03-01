@@ -4,8 +4,10 @@ This Application helps with maitainning yours diary in a single, nice applicatio
 
 How to compile and start application.
 
-1.Create MySql db 
-2.Set up MySql db in application.properties
+1.Create MySql database
+
+2.Set up MySql database in application.properties
+
 3.Launch mvn package in src folder.
 
 Important:
