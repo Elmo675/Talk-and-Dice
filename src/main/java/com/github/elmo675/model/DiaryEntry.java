@@ -15,7 +15,6 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Data
 public class DiaryEntry {
-    enum publicity{Public,Friends,Private}
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -25,7 +24,7 @@ public class DiaryEntry {
     private String content;
 
     @Column(name = "privacy", nullable = false)
-    private publicity privacy;
+    private Accessibility acces;
 
 
     @CreationTimestamp

@@ -51,7 +51,7 @@ public class DiaryEntryController {
                         .orElseThrow(() -> new ResourceNotFoundException("DiaryEntry not found on :: " + DiaryEntryId));
 
         DiaryEntry.setContent(DiaryEntryDetails.getContent());
-        DiaryEntry.setPrivacy(DiaryEntryDetails.getPrivacy());
+        DiaryEntry.setAcces(DiaryEntryDetails.getAcces());
         DiaryEntry.setUpdatedAt(new Date());
         final DiaryEntry updatedDiaryEntry = DiaryEntryRepository.save(DiaryEntry);
         return ResponseEntity.ok(updatedDiaryEntry);
