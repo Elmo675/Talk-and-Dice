@@ -1,6 +1,6 @@
-package com.api.v1.repository;
+package com.github.elmo675.repository;
 
-import com.api.v1.model.DiaryEntry;
+import com.github.elmo675.model.DiaryEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.api.v1;
+package com.github.elmo675;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

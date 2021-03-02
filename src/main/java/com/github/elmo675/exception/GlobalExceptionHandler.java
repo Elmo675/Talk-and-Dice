@@ -1,6 +1,6 @@
 
 
-package com.api.v1.exception;
+package com.github.elmo675.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

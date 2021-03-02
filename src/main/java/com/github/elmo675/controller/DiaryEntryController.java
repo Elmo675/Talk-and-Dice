@@ -1,9 +1,9 @@
-package com.api.v1.controller;
+package com.github.elmo675.controller;
 
 
-import com.api.v1.exception.ResourceNotFoundException;
-import com.api.v1.model.DiaryEntry;
-import com.api.v1.repository.DiaryEntryRepository;
+import com.github.elmo675.exception.ResourceNotFoundException;
+import com.github.elmo675.model.DiaryEntry;
+import com.github.elmo675.repository.DiaryEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class DiaryEntryController {
     private DiaryEntryRepository DiaryEntryRepository;
 
     @GetMapping("/entry")
-    public List<DiaryEntry> getAllDiaryEntrys() {
+    public List<DiaryEntry> getAllDiaryEntries() {
         return DiaryEntryRepository.findAll();
     }
 
@@ -56,7 +56,7 @@ public class DiaryEntryController {
         final DiaryEntry updatedDiaryEntry = DiaryEntryRepository.save(DiaryEntry);
         return ResponseEntity.ok(updatedDiaryEntry);
     }
-    @DeleteMapping("/DiaryEntrys/{id}")
+    @DeleteMapping("/entry/{id}")
     public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long DiaryEntryId) throws Exception {
         DiaryEntry DiaryEntry =
                 DiaryEntryRepository
