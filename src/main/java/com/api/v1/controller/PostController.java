@@ -1,11 +1,11 @@
-package com.staxrt.tutorial.controller;
-/* https://www.baeldung.com/spring-data-jpa-multiple-databases */
+package com.api.v1.controller;
 
-import com.staxrt.tutorial.exception.ResourceNotFoundException;
-import com.staxrt.tutorial.model.Post;
-import com.staxrt.tutorial.model.User;
-import com.staxrt.tutorial.repository.PostRepository;
-import com.staxrt.tutorial.repository.UserRepository;
+
+import com.api.v1.exception.ResourceNotFoundException;
+import com.api.v1.model.Post;
+import com.api.v1.model.User;
+import com.api.v1.repository.PostRepository;
+import com.api.v1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

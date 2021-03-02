@@ -8,7 +8,9 @@ How to compile and start application.
 
 2.Set up MySql database in application.properties
 
-3.Launch mvn package in src folder.
+3.Launch mvn package in src folder to create jar file in src/target folder
+
+4.Launch java -jar on jar file in src/target to start application 
 
 Important:
 Make sure your MySql Server is working properly and that you have created database

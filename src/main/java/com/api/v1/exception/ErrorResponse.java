@@ -18,14 +18,14 @@
  *
  */
 
-package com.staxrt.tutorial.exception;
+package com.api.v1.exception;
 
 import java.util.Date;
 
 /**
  * The type Error response.
  *
- * @author Givantha Kalansuriya
+ * @author Emil Burdach
  */
 public class ErrorResponse {
 

@@ -1,4 +1,4 @@
-package com.staxrt.tutorial.model;
+package com.api.v1.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
