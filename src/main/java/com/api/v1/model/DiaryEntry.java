@@ -13,17 +13,17 @@ import java.util.Date;
 @Table(name = "DiaryEntrys")
 @EntityListeners(AuditingEntityListener.class)
 public class DiaryEntry {
-
+    enum publicity{Public,Friends,Private}
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
 
-    @Column(name = "data", nullable = false)
-    private String data;
+    @Column(name = "content", nullable = false)
+    private String content;
 
     @Column(name = "privacy", nullable = false)
-    private String privacy;
+    private publicity privacy;
 
 
     @CreationTimestamp
@@ -47,11 +47,11 @@ public class DiaryEntry {
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 
-    public String getData(){ return data; }
-    public void   setData(String data){this.data = data;}
+    public String getContent(){ return content; }
+    public void   setContent(String content){this.content = content;}
 
-    public String getPrivacy(){ return privacy; }
-    public void   setPrivacy(String privacy){this.privacy=privacy;}
+    public publicity getPrivacy(){ return privacy; }
+    public void   setPrivacy(publicity privacy){this.privacy=privacy;}
 
     public Date getCreatedAt() { return createdAt; }
     public void setCreatedAt(Date createdAt){ this.createdAt=createdAt;}
@@ -69,7 +69,7 @@ public class DiaryEntry {
     public String toString() {
         return "DiaryEntry{" +
                 "id=" + id +
-                ", data='" + data + '\'' +
+                ", data='" + content + '\'' +
                 ", privacy='" + privacy + '\'' +
                 ", createdAt=" + createdAt +
                 ", createdBy='" + createdBy + '\'' +
