@@ -10,9 +10,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "DiaryEntrys")
 @EntityListeners(AuditingEntityListener.class)
-public class Post {
+public class DiaryEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,7 +67,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "DiaryEntry{" +
                 "id=" + id +
                 ", data='" + data + '\'' +
                 ", privacy='" + privacy + '\'' +
