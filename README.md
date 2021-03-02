@@ -1,6 +1,6 @@
 Web_Diary
 Simple Rest Api with Maven, Spring Boot, Docker, Github, JRA, MySQL
-This Application helps with maitainning yours diary in a single, nice application.
+This Application helps with maitainning yours diary in a single, nice application. xx
 
 How to compile and start application.
 
