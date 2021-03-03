@@ -1,5 +1,7 @@
 package com.github.elmo675;
 
+import com.github.elmo675.model.Accessibility;
+import com.github.elmo675.model.DiaryEntry;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.Assert;
 import org.springframework.web.client.HttpClientErrorException;
 
 @ExtendWith(SpringExtension.class)
@@ -28,65 +30,63 @@ public class ApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-/*
+
 	@Test
-	public void testGetAllUsers() {
+	public void testGetAllDiaryEntries() {
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
-		ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "/users",
+		ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "/entry",
 				HttpMethod.GET, entity, String.class);
-
-		Assert.assertNotNull(response.getBody());
+		Assert.notNull(response.getBody());
 	}
 
 	@Test
-	public void testGetUserById() {
-		User user = restTemplate.getForObject(getRootUrl() + "/users/1", User.class);
-		System.out.println(user.getFirstName());
-		Assert.assertNotNull(user);
+	public void testGetDiaryEntryById() {
+		DiaryEntry diary = restTemplate.getForObject(getRootUrl() + "/entry/1", DiaryEntry.class);
+		System.out.println(diary.getCreatedBy());
+		Assert.notNull(diary);
 	}
 
 	@Test
-	public void testCreateUser() {
-		User user = new User();
-		user.setEmail("admin@gmail.com");
-		user.setFirstName("admin");
-		user.setLastName("admin");
-		user.setCreatedBy("admin");
-		user.setUpdatedBy("admin");
+	public void testCreateDiaryEntry() {
+		DiaryEntry diary = new DiaryEntry();
+		diary.setAcces(Accessibility.PRIVATE);
+		diary.setContent("TEXT");
+		diary.setCreatedBy("ME");
+		diary.setUpdatedBy("ME2");
 
-		ResponseEntity<User> DiaryEntryResponse = restTemplate.DiaryEntryForEntity(getRootUrl() + "/users", user, User.class);
-		Assert.assertNotNull(DiaryEntryResponse);
-		Assert.assertNotNull(DiaryEntryResponse.getBody());
+		ResponseEntity<DiaryEntry> DiaryEntryResponse = restTemplate.postForEntity(getRootUrl() + "/entry", diary, DiaryEntry.class);
+		Assert.notNull(DiaryEntryResponse);
+		Assert.notNull(DiaryEntryResponse.getBody());
+		System.out.println(DiaryEntryResponse);
 	}
 
 	@Test
 	public void testUpdateDiaryEntry() {
 		int id = 1;
-		User user = restTemplate.getForObject(getRootUrl() + "/users/" + id, User.class);
-		user.setFirstName("admin1");
-		user.setLastName("admin2");
+		DiaryEntry diary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
+		diary.setContent("SOME CONTENT HERE");
+		diary.setUpdatedBy("RANDOM MEN ");
 
-		restTemplate.put(getRootUrl() + "/users/" + id, user);
+		restTemplate.put(getRootUrl() + "/entry/" + id, diary);
 
-		User updatedUser = restTemplate.getForObject(getRootUrl() + "/users/" + id, User.class);
-		Assert.assertNotNull(updatedUser);
+		DiaryEntry updatedDiary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
+		Assert.notNull(updatedDiary);
 	}
 
 	@Test
 	public void testDeleteDiaryEntry() {
 		int id = 2;
-		User user = restTemplate.getForObject(getRootUrl() + "/users/" + id, User.class);
-		Assert.assertNotNull(user);
+		DiaryEntry diary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
+		Assert.notNull(diary);
 
-		restTemplate.delete(getRootUrl() + "/users/" + id);
+		restTemplate.delete(getRootUrl() + "/entry/" + id);
 
 		try {
-			user = restTemplate.getForObject(getRootUrl() + "/users/" + id, User.class);
+			diary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
 		} catch (final HttpClientErrorException e) {
-			Assert.assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
+			Assert.isTrue(e.getStatusCode() == HttpStatus.NOT_FOUND);
 		}
 	}
-*/
 }
