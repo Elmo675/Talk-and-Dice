@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/elmo675/diary/actions/workflows/superlinter.yml/badge.svg)](https://github.com/Elmo675/Diary/actions/workflows/superlinter.yml?query=workflow%3ACI)
+
 # Diary
 
 **Diary** is a web application which allows you to maitain your own diary in a simple, nice way. You can add friends who will see your diarys if you allow them to. You can make public diares which people around the world will be able to read and publish and of course you can make your own diary which will be available only to you.
