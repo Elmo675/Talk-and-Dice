@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/elmo675/diary/actions/workflows/superlinter.yml/badge.svg)](https://github.com/Elmo675/Diary/actions/workflows/superlinter.yml?query=workflow%3ACI)
+[![Build Status](https://github.com/elmo675/diary/actions/workflows/CI.yml/badge.svg)](https://github.com/Elmo675/Diary/actions/workflows/CI.yml?query=workflow%3ACI)
 
 # Diary
 
