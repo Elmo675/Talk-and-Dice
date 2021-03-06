@@ -4,6 +4,7 @@ import com.github.elmo675.model.Accessibility;
 import com.github.elmo675.model.DiaryEntry;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class ApplicationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
+
+	@Autowired
+	ModelMapper modelMapper = new ModelMapper();
 
 	@LocalServerPort
 	private int port;
@@ -44,14 +48,14 @@ public class ApplicationTests {
 	@Test
 	public void testGetDiaryEntryById() {
 		DiaryEntry diary = restTemplate.getForObject(getRootUrl() + "/entry/1", DiaryEntry.class);
-		System.out.println(diary.getCreatedBy());
+		System.out.println(diary.getContent());
 		Assert.notNull(diary);
 	}
 
 	@Test
 	public void testCreateDiaryEntry() {
 		DiaryEntry diary = new DiaryEntry();
-		diary.setAcces(Accessibility.PRIVATE);
+		diary.setAccess(Accessibility.PRIVATE);
 		diary.setContent("TEXT");
 		diary.setCreatedBy("ME");
 		diary.setUpdatedBy("ME2");
@@ -59,7 +63,7 @@ public class ApplicationTests {
 		ResponseEntity<DiaryEntry> DiaryEntryResponse = restTemplate.postForEntity(getRootUrl() + "/entry", diary, DiaryEntry.class);
 		Assert.notNull(DiaryEntryResponse);
 		Assert.notNull(DiaryEntryResponse.getBody());
-		System.out.println(DiaryEntryResponse);
+		System.out.println(DiaryEntryResponse.getBody());
 	}
 
 	@Test
@@ -89,4 +93,6 @@ public class ApplicationTests {
 			Assert.isTrue(e.getStatusCode() == HttpStatus.NOT_FOUND);
 		}
 	}
+
+
 }

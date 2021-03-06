@@ -24,7 +24,7 @@ public class DiaryEntry {
     private String content;
 
     @Column(name = "privacy", nullable = false)
-    private Accessibility acces;
+    private Accessibility access;
 
 
     @CreationTimestamp
