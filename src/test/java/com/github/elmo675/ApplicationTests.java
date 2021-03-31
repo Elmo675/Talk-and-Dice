@@ -1,7 +1,7 @@
 package com.github.elmo675;
 
 import com.github.elmo675.model.Accessibility;
-import com.github.elmo675.model.DiaryEntry;
+import com.github.elmo675.model.Session;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +32,7 @@ public class ApplicationTests {
 	}
 
 	@Test
-	public void testGetAllDiaryEntries() {
+	public void testGetAllSessions() {
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
@@ -42,49 +42,49 @@ public class ApplicationTests {
 	}
 
 	@Test
-	public void testGetDiaryEntryById() {
-		DiaryEntry diary = restTemplate.getForObject(getRootUrl() + "/entry/1", DiaryEntry.class);
-		System.out.println(diary.getCreatedBy());
-		Assert.notNull(diary);
+	public void testGetSessionById() {
+		Session session = restTemplate.getForObject(getRootUrl() + "/entry/1", Session.class);
+		System.out.println(session.getCreatedBy());
+		Assert.notNull(session);
 	}
 
 	@Test
-	public void testCreateDiaryEntry() {
-		DiaryEntry diary = new DiaryEntry();
-		diary.setAcces(Accessibility.PRIVATE);
-		diary.setContent("TEXT");
-		diary.setCreatedBy("ME");
-		diary.setUpdatedBy("ME2");
+	public void testCreateSession() {
+		Session session = new Session();
+		session.setAcces(Accessibility.PRIVATE);
+		session.setContent("TEXT");
+		session.setCreatedBy("ME");
+		session.setUpdatedBy("ME2");
 
-		ResponseEntity<DiaryEntry> DiaryEntryResponse = restTemplate.postForEntity(getRootUrl() + "/entry", diary, DiaryEntry.class);
-		Assert.notNull(DiaryEntryResponse);
-		Assert.notNull(DiaryEntryResponse.getBody());
-		System.out.println(DiaryEntryResponse);
+		ResponseEntity<Session> SessionResponse = restTemplate.postForEntity(getRootUrl() + "/entry", session, Session.class);
+		Assert.notNull(SessionResponse);
+		Assert.notNull(SessionResponse.getBody());
+		System.out.println(SessionResponse);
 	}
 
 	@Test
-	public void testUpdateDiaryEntry() {
+	public void testUpdateSession() {
 		int id = 1;
-		DiaryEntry diary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
-		diary.setContent("SOME CONTENT HERE");
-		diary.setUpdatedBy("RANDOM MEN ");
+		Session session = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
+		session.setContent("SOME CONTENT HERE");
+		session.setUpdatedBy("RANDOM MEN ");
 
-		restTemplate.put(getRootUrl() + "/entry/" + id, diary);
+		restTemplate.put(getRootUrl() + "/entry/" + id, session);
 
-		DiaryEntry updatedDiary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
-		Assert.notNull(updatedDiary);
+		Session updatedsession = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
+		Assert.notNull(updatedsession);
 	}
 
 	@Test
-	public void testDeleteDiaryEntry() {
+	public void testDeleteSession() {
 		int id = 2;
-		DiaryEntry diary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
-		Assert.notNull(diary);
+		Session session = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
+		Assert.notNull(session);
 
 		restTemplate.delete(getRootUrl() + "/entry/" + id);
 
 		try {
-			diary = restTemplate.getForObject(getRootUrl() + "/entry/" + id, DiaryEntry.class);
+			session = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
 		} catch (final HttpClientErrorException e) {
 			Assert.isTrue(e.getStatusCode() == HttpStatus.NOT_FOUND);
 		}

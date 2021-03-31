@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>com.github.elmo675</groupId>
-	<artifactId>Diary</artifactId>
+	<artifactId>session</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Diary</name>
-	<description>Diary application</description>
+	<name>session</name>
+	<description>session application</description>
 
 	<properties>
 		<java.version>15</java.version>

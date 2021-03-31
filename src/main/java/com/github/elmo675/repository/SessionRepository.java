@@ -1,6 +1,6 @@
 package com.github.elmo675.repository;
 
-import com.github.elmo675.model.DiaryEntry;
+import com.github.elmo675.model.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,4 +10,4 @@ import org.springframework.stereotype.Repository;
  * @author Emil Burdach
  */
 @Repository
-public interface DiaryEntryRepository extends JpaRepository<DiaryEntry, Long> {}
+public interface SessionRepository extends JpaRepository<Session, Long> {}

@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/elmo675/diary/actions/workflows/CI.yml/badge.svg)](https://github.com/Elmo675/Diary/actions/workflows/CI.yml?query=workflow%3ACI)
+[![Build Status](https://github.com/elmo675/session/actions/workflows/CI.yml/badge.svg)](https://github.com/Elmo675/session/actions/workflows/CI.yml?query=workflow%3ACI)
 
 # Talk&Dice
 
@@ -7,7 +7,7 @@
 ## Instalation
 
 1. Git clone this repository to your main repository
-2. Create sesion_database in your MySql server
+2. Create session_database in your MySql server
 3. In main/resources/application.properties set up your connection with MySql server
 4. Run mvn package to create jar file
 

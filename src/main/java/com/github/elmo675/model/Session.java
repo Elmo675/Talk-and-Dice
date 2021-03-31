@@ -11,10 +11,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "DiaryEntries")
+@Table(name = "Sessions")
 @EntityListeners(AuditingEntityListener.class)
 @Data
-public class DiaryEntry {
+public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
