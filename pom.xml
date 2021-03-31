@@ -14,7 +14,7 @@
 	<artifactId>Talk-and-Dice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Talk-and-Dice</name>
-	<description>Talk&Dice application</description>
+	<description>Talk and Dice application</description>
 
 	<properties>
 		<java.version>15</java.version>
