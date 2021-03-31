@@ -7,7 +7,6 @@ import com.github.elmo675.model.DiaryEntry;
 import com.github.elmo675.repository.DiaryEntryRepository;
 import com.github.elmo675.DTO.response.*;
 import com.github.elmo675.DTO.request.*;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +27,6 @@ public class DiaryEntryController {
     @Autowired
     private DiaryEntryRepository DiaryEntryRepository;
 
-    @Autowired
-    ModelMapper modelMapper = new ModelMapper();
 
     private DiaryEntryResponse convertDiaryEntryToResponse(DiaryEntry diaryEntry) {
         DiaryEntryResponse DTO = modelMapper.map(diaryEntry, DiaryEntryResponse.class);
