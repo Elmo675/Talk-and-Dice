@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/elmo675/session/actions/workflows/CI.yml/badge.svg)](https://github.com/Elmo675/session/actions/workflows/CI.yml?query=workflow%3ACI)
+[![Build Status](https://github.com/elmo675/Talk-and-Dice/actions/workflows/CI.yml/badge.svg)](https://github.com/Elmo675/Talk-and-Dice/actions/workflows/CI.yml?query=workflow%3ACI)
 
 # Talk&Dice
 
