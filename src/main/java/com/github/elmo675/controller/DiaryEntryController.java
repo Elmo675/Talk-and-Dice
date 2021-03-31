@@ -57,7 +57,7 @@ public class DiaryEntryController {
         return ResponseEntity.ok(updatedDiaryEntry);
     }
     @DeleteMapping("/entry/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long DiaryEntryId) throws Exception {
+    public Map<String, Boolean> deleteDiaryEntry(@PathVariable(value = "id") Long DiaryEntryId) throws Exception {
         DiaryEntry DiaryEntry =
                 DiaryEntryRepository
                         .findById(DiaryEntryId)
