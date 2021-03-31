@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>com.github.elmo675</groupId>
-	<artifactId>session</artifactId>
+	<artifactId>Talk-and-Dice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>session</name>
-	<description>session application</description>
+	<name>Talk-and-Dice</name>
+	<description>Talk&Dice application</description>
 
 	<properties>
 		<java.version>15</java.version>
