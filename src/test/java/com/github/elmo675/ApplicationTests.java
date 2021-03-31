@@ -1,7 +1,9 @@
 package com.github.elmo675;
 
 import com.github.elmo675.model.Accessibility;
+
 import com.github.elmo675.model.Session;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +34,9 @@ public class ApplicationTests {
 	}
 
 	@Test
+
 	public void testGetAllSessions() {
+
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
@@ -80,6 +84,7 @@ public class ApplicationTests {
 		int id = 2;
 		Session session = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
 		Assert.notNull(session);
+
 
 		restTemplate.delete(getRootUrl() + "/entry/" + id);
 
