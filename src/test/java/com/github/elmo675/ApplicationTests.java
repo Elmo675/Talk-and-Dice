@@ -34,20 +34,20 @@ public class ApplicationTests {
 	}
 
 	@Test
-
 	public void testGetAllSessions() {
 
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
-		ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "/entry",
+		ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "api/v1/entry",
 				HttpMethod.GET, entity, String.class);
 		Assert.notNull(response.getBody());
+		System.out.println(response.getBody());
 	}
 
 	@Test
 	public void testGetSessionById() {
-		Session session = restTemplate.getForObject(getRootUrl() + "/entry/1", Session.class);
+		Session session = restTemplate.getForObject(getRootUrl() + "api/v1/entry/1", Session.class);
 		System.out.println(session.getId());
 		Assert.notNull(session);
 	}
@@ -60,7 +60,7 @@ public class ApplicationTests {
 		session.setCreatedBy("ME");
 		session.setUpdatedBy("ME2");
 
-		ResponseEntity<Session> SessionResponse = restTemplate.postForEntity(getRootUrl() + "/entry", session, Session.class);
+		ResponseEntity<Session> SessionResponse = restTemplate.postForEntity(getRootUrl() + "api/v1/entry", session, Session.class);
 		Assert.notNull(SessionResponse);
 		Assert.notNull(SessionResponse.getBody());
 		System.out.println(SessionResponse);
@@ -69,27 +69,27 @@ public class ApplicationTests {
 	@Test
 	public void testUpdateSession() {
 		int id = 1;
-		Session session = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
+		Session session = restTemplate.getForObject(getRootUrl() + "api/v1/entry/" + id, Session.class);
 		session.setContent("SOME CONTENT HERE");
 		session.setUpdatedBy("RANDOM MEN ");
 
-		restTemplate.put(getRootUrl() + "/entry/" + id, session);
+		restTemplate.put(getRootUrl() + "api/v1/entry/" + id, session);
 
-		Session updatedsession = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
-		Assert.notNull(updatedsession);
+		Session updatedSession = restTemplate.getForObject(getRootUrl() + "api/v1/entry/" + id, Session.class);
+		Assert.notNull(updatedSession);
 	}
 
 	@Test
 	public void testDeleteSession() {
 		int id = 2;
-		Session session = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
+		Session session = restTemplate.getForObject(getRootUrl() + "api/v1/entry/" + id, Session.class);
 		Assert.notNull(session);
 
 
-		restTemplate.delete(getRootUrl() + "/entry/" + id);
+		restTemplate.delete(getRootUrl() + "api/v1/entry/" + id);
 
 		try {
-			session = restTemplate.getForObject(getRootUrl() + "/entry/" + id, Session.class);
+			session = restTemplate.getForObject(getRootUrl() + "api/v1/entry/" + id, Session.class);
 		} catch (final HttpClientErrorException e) {
 			Assert.isTrue(e.getStatusCode() == HttpStatus.NOT_FOUND);
 		}

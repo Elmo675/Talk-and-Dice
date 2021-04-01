@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Sessions")
+@Table(name = "Session")
 @EntityListeners(AuditingEntityListener.class)
 @Data
 public class Session {
@@ -24,7 +24,7 @@ public class Session {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "privacy", nullable = false)
+    @Column(name = "access", nullable = false)
     private Accessibility access;
 
 
