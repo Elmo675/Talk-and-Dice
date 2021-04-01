@@ -1,6 +1,8 @@
 package com.github.elmo675.controller;
 
 
+import com.github.elmo675.DTO.Request.SessionRequest;
+import com.github.elmo675.DTO.Response.SessionResponse;
 import com.github.elmo675.exception.ResourceNotFoundException;
 import com.github.elmo675.model.Session;
 import com.github.elmo675.repository.SessionRepository;
@@ -13,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -22,48 +25,65 @@ public class SessionController {
     @Autowired
     private SessionRepository SessionRepository;
 
+    public SessionResponse convertSessionToResponse(Session session){
+        return SessionResponse.builder().build().withId(session.getId()).withAccess(session.getAccess()).
+                withContent(session.getContent()).withCreatedAt(session.getCreatedAt()).withCreatedBy(session.getCreatedBy()).
+                withUpdatedAt(session.getUpdatedAt()).withUpdatedBy(session.getUpdatedBy());
+    }
+
+
     @GetMapping("/entry")
-    public List<Session> getAllSessions() {
-        return SessionRepository.findAll();
+    public List<SessionResponse> getAllSessions() {
+        List<Session> sessions = SessionRepository.findAll();
+        return sessions.stream().map(this::convertSessionToResponse).collect(Collectors.toList());
     }
 
     @GetMapping("/entry/{id}")
-    public ResponseEntity<Session> getSessionById(@PathVariable(value = "id") Long SessionId)
+    public ResponseEntity<SessionResponse> getSessionById(@PathVariable(value = "id") Long sessionId)
             throws ResourceNotFoundException {
-        Session Session =
+        Session session =
                 SessionRepository
-                        .findById(SessionId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Session not found on :: " + SessionId));
-        return ResponseEntity.ok().body(Session);
+                        .findById(sessionId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Session not found on :: " + sessionId));
+
+        return ResponseEntity.ok().body(convertSessionToResponse(session));
     }
     @PostMapping("/entry")
-    public Session createSession(@Valid @RequestBody Session Session) {
-        return SessionRepository.save(Session);
+    public Session createSession(@Valid @RequestBody SessionRequest request) {
+        Session result = new Session();
+        result.setContent(request.getContent());
+        result.setCreatedBy(request.getAuthor());
+        result.setUpdatedBy(request.getAuthor());
+        result.setAccess(request.getAccess());
+        Date now = new Date();
+        result.setUpdatedAt(now);
+        result.setCreatedAt(now);
+        return SessionRepository.save(result);
     }
     @PutMapping("/entry/{id}")
-    public ResponseEntity<Session> updateSession(
-            @PathVariable(value = "id") Long SessionId, @Valid @RequestBody Session sessionDetails)
+    public ResponseEntity<SessionResponse> updateSession(
+            @PathVariable(value = "id") Long sessionId, @Valid @RequestBody SessionRequest request)
             throws ResourceNotFoundException {
 
-        Session Session =
+        Session session =
                 SessionRepository
-                        .findById(SessionId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Session not found on :: " + SessionId));
-
-        Session.setContent(sessionDetails.getContent());
-        Session.setAcces(sessionDetails.getAcces());
-        Session.setUpdatedAt(new Date());
-        final Session updatedSession = SessionRepository.save(Session);
-        return ResponseEntity.ok(updatedSession);
+                        .findById(sessionId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Session not found on :: " + sessionId));
+        session.setContent(request.getContent());
+        session.setAccess(request.getAccess());
+        session.setUpdatedBy(request.getAuthor());
+        session.setUpdatedAt(new Date());
+        final Session updatedSession = SessionRepository.save(session);
+        return ResponseEntity.ok(convertSessionToResponse(updatedSession));
     }
     @DeleteMapping("/entry/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long SessionId) throws Exception {
-        Session Session =
+    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long sessionId) throws Exception {
+        Session session =
                 SessionRepository
-                        .findById(SessionId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Session not found on :: " + SessionId));
+                        .findById(sessionId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Session not found on :: " + sessionId));
 
-        SessionRepository.delete(Session);
+        SessionRepository.delete(session);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;

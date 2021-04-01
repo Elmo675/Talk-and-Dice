@@ -48,14 +48,14 @@ public class ApplicationTests {
 	@Test
 	public void testGetSessionById() {
 		Session session = restTemplate.getForObject(getRootUrl() + "/entry/1", Session.class);
-		System.out.println(session.getCreatedBy());
+		System.out.println(session.getId());
 		Assert.notNull(session);
 	}
 
 	@Test
 	public void testCreateSession() {
 		Session session = new Session();
-		session.setAcces(Accessibility.PRIVATE);
+		session.setAccess(Accessibility.PRIVATE);
 		session.setContent("TEXT");
 		session.setCreatedBy("ME");
 		session.setUpdatedBy("ME2");

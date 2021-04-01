@@ -1,6 +1,7 @@
 package com.github.elmo675.model;
 
 import lombok.Data;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
@@ -24,7 +25,7 @@ public class Session {
     private String content;
 
     @Column(name = "privacy", nullable = false)
-    private Accessibility acces;
+    private Accessibility access;
 
 
     @CreationTimestamp
