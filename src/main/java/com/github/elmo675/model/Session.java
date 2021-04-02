@@ -12,12 +12,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Session")
+@Table(name = "Sessions")
 @EntityListeners(AuditingEntityListener.class)
 @Data
 public class Session {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
 
@@ -25,6 +25,7 @@ public class Session {
     private String content;
 
     @Column(name = "access", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Accessibility access;
 
 

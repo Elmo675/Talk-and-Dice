@@ -49,7 +49,7 @@ public class SessionController {
         return ResponseEntity.ok().body(convertSessionToResponse(session));
     }
     @PostMapping("/entry")
-    public Session createSession(@Valid @RequestBody SessionRequest request) {
+    public SessionResponse createSession(@Valid @RequestBody SessionRequest request) {
         Session result = new Session();
         result.setContent(request.getContent());
         result.setCreatedBy(request.getAuthor());
@@ -58,7 +58,7 @@ public class SessionController {
         Date now = new Date();
         result.setUpdatedAt(now);
         result.setCreatedAt(now);
-        return SessionRepository.save(result);
+        return convertSessionToResponse( SessionRepository.save(result));
     }
     @PutMapping("/entry/{id}")
     public ResponseEntity<SessionResponse> updateSession(
@@ -77,7 +77,7 @@ public class SessionController {
         return ResponseEntity.ok(convertSessionToResponse(updatedSession));
     }
     @DeleteMapping("/entry/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long sessionId) throws Exception {
+    public Map<String, Boolean> deleteSession(@PathVariable(value = "id") Long sessionId) throws Exception {
         Session session =
                 SessionRepository
                         .findById(sessionId)
