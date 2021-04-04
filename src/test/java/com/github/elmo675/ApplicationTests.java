@@ -19,6 +19,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.sql.Array;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
@@ -76,8 +77,8 @@ public class ApplicationTests {
 		Assert.isTrue(sessionResponse.getBody().getContent().equals("content"),"Content is incorrect, it should have value: content");
 		Assert.isTrue(sessionResponse.getBody().getCreatedBy().equals("ME"),"CreatedBy is incorrect, it should have value: ME");
 		Assert.isTrue(sessionResponse.getBody().getUpdatedBy().equals("ME2"),"UpdatedBy is incorrect, it should have value: ME2");
-		Assert.isTrue(sessionResponse.getBody().getCreatedAt().toString().equals("Thu Apr 01 20:24:15 CEST 2021"),"CreatedAt is incorrect, its toString() function should have value: Thu Apr 01 20:24:15 CEST 2021, but it has value" +sessionResponse.getBody().getCreatedAt().toString() );
-		Assert.isTrue(sessionResponse.getBody().getUpdatedAt().toString().equals("Thu Apr 01 20:24:15 CEST 2021"),"UpdatedAt is incorrect, its toString() function should have value: Thu Apr 01 20:24:15 CEST 2021, but it has value"+ sessionResponse.getBody().getCreatedAt().toString());
+		Assert.isTrue(sessionResponse.getBody().getCreatedAt().equals(Timestamp.valueOf("2012-09-17 18:47:52.69")),"CreatedAt is incorrect, It should be Timestamp value of 2012-09-17 18:47:52.69, but it is : "+ sessionResponse.getBody().getCreatedAt());
+		Assert.isTrue(sessionResponse.getBody().getUpdatedAt().equals(Timestamp.valueOf("2012-09-17 18:47:52.69")),"UpdatedAt is incorrect, It should be Timestamp value of 2012-09-17 18:47:52.69, but it is : "+ sessionResponse.getBody().getCreatedAt());
 	}
 
 	@Test
