@@ -1,6 +1,7 @@
 package com.github.elmo675.model;
 
 import lombok.Data;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
@@ -16,15 +17,16 @@ import java.util.Date;
 @Data
 public class Session {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
 
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "privacy", nullable = false)
-    private Accessibility acces;
+    @Column(name = "access", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Accessibility access;
 
 
     @CreationTimestamp

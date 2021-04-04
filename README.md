@@ -28,7 +28,7 @@ Note: Check if your MySql server is working properly
 
 You can get all sessions from localhost:8080/api/v1/entry or a specific session from /api/v1/entry/{id}
 
-You can post new sessions on localhost:8080/api/v1/entry or edit existing ones on /api/vi/entry/{id} 
+You can post new sessions on localhost:8080/api/v1/entry or edit existing ones on /api/v1/entry/{id} 
 
 You can delete existing sessions on localhost:8080/api/v1/entry/{id}
 
